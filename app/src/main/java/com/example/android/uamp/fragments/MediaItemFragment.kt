@@ -78,6 +78,7 @@ class MediaItemFragment : Fragment() {
                     if (list?.isNotEmpty() == true) View.GONE else View.VISIBLE
                 listAdapter.submitList(list)
             })
+
         mediaItemFragmentViewModel.networkError.observe(viewLifecycleOwner,
             Observer { error ->
                 if (error) {

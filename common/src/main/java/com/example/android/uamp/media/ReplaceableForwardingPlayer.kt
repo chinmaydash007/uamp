@@ -37,6 +37,7 @@ import androidx.media3.common.TrackSelectionParameters
 import androidx.media3.common.Tracks
 import androidx.media3.common.VideoSize
 import androidx.media3.common.text.CueGroup
+import androidx.media3.common.util.Size
 import androidx.media3.common.util.UnstableApi
 import java.util.ArrayDeque
 import kotlin.math.min
@@ -593,6 +594,10 @@ class ReplaceableForwardingPlayer(private var player: Player) : Player {
 
     override fun getVideoSize(): VideoSize {
         return player.videoSize
+    }
+
+    override fun getSurfaceSize(): Size {
+        return player.surfaceSize
     }
 
     override fun getCurrentCues(): CueGroup {

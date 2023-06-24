@@ -74,6 +74,10 @@ class NowPlayingFragment : Fragment() {
         // Always true, but lets lint know that as well.
         val context = activity ?: return
 
+        // Initialize playback duration and position to zero
+        binding.duration.text = timestampToMSS(context, 0L)
+        binding.position.text = timestampToMSS(context, 0L)
+
         // Attach observers to the LiveData coming from this ViewModel
         nowPlayingViewModel.mediaItem.observe(viewLifecycleOwner,
             Observer { mediaItem -> updateUI(view, mediaItem) })
@@ -81,10 +85,14 @@ class NowPlayingFragment : Fragment() {
             Observer { res ->
                 binding.mediaButton.setImageResource(res)
             })
+
+
         nowPlayingViewModel.mediaPosition.observe(viewLifecycleOwner,
             Observer { pos ->
                 binding.position.text = timestampToMSS(context, pos)
             })
+
+
         nowPlayingViewModel.mediaDuration.observe(viewLifecycleOwner,
             Observer { duration ->
                 binding.duration.text = timestampToMSS(context, duration)
@@ -97,9 +105,7 @@ class NowPlayingFragment : Fragment() {
             }
         }
 
-        // Initialize playback duration and position to zero
-        binding.duration.text = timestampToMSS(context, 0L)
-        binding.position.text = timestampToMSS(context, 0L)
+
     }
 
     /**
